@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff8e8" />
+  <title>結合韻小挑戰</title>
+  <link rel="preconnect" href="https://genikid-ai.github.io" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="stage" aria-live="polite">
+    <header class="topbar">
+      <button id="homeBtn" class="icon-btn hidden" aria-label="回首頁">⌂</button>
+      <div class="brand"><span class="brand-dot">ㄅ</span><span>結合韻小挑戰</span></div>
+      <div id="progress" class="progress hidden">第 1 題</div>
+    </header>
+
+    <section id="home" class="screen home-screen active">
+      <div class="hero-copy">
+        <p class="eyebrow">聽一聽・念一念・找一找</p>
+        <h1>一起玩<br><em>結合韻</em>！</h1>
+        <p class="intro">選一個模式，跟著注音卡展開聲音冒險。</p>
+      </div>
+      <div class="mode-grid" aria-label="選擇遊戲模式">
+        <button class="mode-card learn" data-mode="learn">
+          <span class="mode-number">1</span><span class="mode-icon">🌱</span>
+          <strong>學習模式</strong><small>看 1 張圖片認識語詞</small><span class="go">開始學習 →</span>
+        </button>
+        <button class="mode-card practice" data-mode="practice">
+          <span class="mode-number">2</span><span class="mode-icon">⭐</span>
+          <strong>練習模式</strong><small>從 2 張圖片找出答案</small><span class="go">開始練習 →</span>
+        </button>
+        <button class="mode-card challenge" data-mode="challenge">
+          <span class="mode-number">3</span><span class="mode-icon">🏆</span>
+          <strong>挑戰模式</strong><small>從 3 張圖片找出答案</small><span class="go">接受挑戰 →</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="cardScreen" class="screen card-screen">
+      <div class="instruction"><span>①</span> 看著卡片，大聲念一念</div>
+      <div class="card-wrap"><img id="rhymeCard" alt="結合韻卡片" /></div>
+      <button id="showPictures" class="primary-btn">我念好了，看圖片！</button>
+    </section>
+
+    <section id="choiceScreen" class="screen choice-screen">
+      <div id="choiceInstruction" class="instruction"><span>②</span> 哪一張圖片和卡片的結合韻一樣？</div>
+      <div class="choice-workspace">
+        <aside class="rhyme-reminder" aria-label="本題結合韻">
+          <span>本題結合韻</span>
+          <img id="rhymeReminder" alt="本題結合韻卡片" />
+        </aside>
+        <div id="choices" class="choices"></div>
+      </div>
+      <button id="nextBtn" class="primary-btn hidden">下一題 →</button>
+    </section>
+
+    <section id="finishScreen" class="screen finish-screen">
+      <div class="celebration">🎉</div><h2>太棒了！</h2>
+      <p>你完成了這次結合韻練習！</p>
+      <div class="finish-actions"><button id="againBtn" class="primary-btn">再玩一次</button><button id="finishHomeBtn" class="secondary-btn">回到首頁</button></div>
+    </section>
+
+    <div id="resultModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-card">
+        <div id="modalIcon" class="modal-icon">🎉</div>
+        <h2 id="modalTitle">答對了！</h2>
+        <p id="modalMessage">跟著圖片再念一念！</p>
+        <button id="modalNextBtn" class="primary-btn">下一題 →</button>
+        <button id="retryBtn" class="secondary-btn hidden">再試一次</button>
+      </div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
