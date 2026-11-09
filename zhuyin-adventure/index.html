@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#163f38">
+  <title>注音符號大冒險</title>
+  <link rel="stylesheet" href="styles.css?v=animals-7">
+</head>
+<body>
+  <main id="app" class="app-shell">
+    <header class="topbar">
+      <button id="homeBtn" class="icon-btn hidden" aria-label="回到首頁">⌂</button>
+      <div class="brand"><span class="leaf">◆</span><span>注音符號大冒險</span></div>
+      <button id="fullscreenBtn" class="icon-btn" aria-label="全螢幕">⛶</button>
+    </header>
+
+    <section id="startScreen" class="screen active">
+      <div class="hero-copy">
+        <span class="eyebrow">一起出發吧！</span>
+        <h1>森林注音旅行</h1>
+        <p>認出 5 個注音符號，陪森林朋友走到星光草地。</p>
+        <button id="startBtn" class="primary big">開始旅行 <span>➜</span></button>
+      </div>
+      <div class="forest-scene" aria-hidden="true">
+        <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+        <div class="hill back"></div><div class="hill front"></div>
+        <div class="tree t1">♠</div><div class="tree t2">♠</div><div class="tree t3">♠</div>
+        <div class="trail"></div>
+        <div class="welcome-friends"><span>🐰</span><span>🐻</span><span>🐿️</span><span>🦝</span><span>🦌</span><span>🐯</span></div>
+      </div>
+    </section>
+
+    <section id="rangeScreen" class="screen select-screen">
+      <div class="step-pill">第 1 步／共 2 步</div>
+      <h2>挑戰關卡</h2>
+      <div class="choice-grid range-grid">
+        <button class="choice-card range-card" data-range="upper"><span class="card-icon amber">中上</span><span class="card-detail">ㄅ ～ ㄖ</span></button>
+        <button class="choice-card range-card" data-range="lower"><span class="card-icon blue">中下</span><span class="card-detail">ㄗ ～ ㄦ</span></button>
+        <button class="choice-card range-card" data-range="all"><span class="card-icon green">全部</span><span class="card-detail">ㄅ ～ ㄦ</span></button>
+      </div>
+    </section>
+
+    <section id="characterScreen" class="screen select-screen">
+      <div class="step-pill">第 2 步／共 2 步</div>
+      <h2>選一位森林夥伴</h2>
+      <p class="subtitle">牠會陪你完成今天的旅行</p>
+      <div class="choice-grid character-grid">
+        <button class="choice-card character-card" data-character="rabbit"><span class="animal">🐰</span><span class="card-title">小兔子</span></button>
+        <button class="choice-card character-card" data-character="bear"><span class="animal">🐻</span><span class="card-title">小熊</span></button>
+        <button class="choice-card character-card" data-character="squirrel"><span class="animal">🐿️</span><span class="card-title">小松鼠</span></button>
+        <button class="choice-card character-card" data-character="raccoon"><span class="animal">🦝</span><span class="card-title">小浣熊</span></button>
+        <button class="choice-card character-card" data-character="deer"><span class="animal">🦌</span><span class="card-title">小鹿</span></button>
+        <button class="choice-card character-card" data-character="tiger"><span class="animal">🐯</span><span class="card-title">小老虎</span></button>
+      </div>
+      <button id="backToRange" class="text-btn">← 回上一步</button>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen">
+      <div class="game-top">
+        <div><span class="mini-label">森林旅程</span><h2 id="locationTitle">森林入口</h2></div>
+        <div class="progress-wrap"><span id="progressText">0／5</span><div id="stars" class="stars"><i></i><i></i><i></i><i></i><i></i></div></div>
+      </div>
+      <div class="game-layout">
+        <div class="question-panel">
+          <p>請大聲念出這個注音</p>
+          <div id="zhuyin" class="zhuyin" aria-live="polite">ㄅ</div>
+          <div class="teacher-note">老師聽完後，請選擇：</div>
+          <div class="actions">
+            <button id="retryBtn" class="secondary">↻ 再試試</button>
+            <button id="correctBtn" class="primary">答對了 ✓</button>
+          </div>
+        </div>
+        <div class="journey-panel">
+          <div class="map-title"><span>✦</span> 前往星光草地 <span>✦</span></div>
+          <div class="map">
+            <div class="map-sun">☀</div>
+            <div class="map-cloud cloud-a">●●</div><div class="map-cloud cloud-b">●●●</div>
+            <div class="far-hills"></div><div class="near-hills"></div>
+            <div class="forest-decor trees-left">♠ ♠</div><div class="forest-decor trees-right">♠ ♠</div>
+            <div class="forest-decor mushrooms">● ●</div><div class="forest-decor stream">≈≈≈</div>
+            <div class="forest-decor owl">🦉</div>
+            <div class="entrance-ground" aria-hidden="true"><span>♠</span><span>⌂</span></div>
+            <div class="star-cluster" aria-hidden="true"><i>✦</i><i>★</i><i>✧</i><i>✦</i><i>★</i></div>
+            <svg class="path-line" viewBox="0 0 300 520" preserveAspectRatio="none" aria-hidden="true"><path d="M65 150 C190 150 240 180 220 220 C200 250 80 245 90 290 C100 330 250 325 225 375 C210 410 90 420 45 485"/></svg>
+            <div id="traveler" class="traveler">🐰</div>
+            <div class="stop done" data-stop="0"><b>1</b><span>森林入口</span></div>
+            <div class="stop" data-stop="1"><b>2</b><span>蘑菇小徑</span></div>
+            <div class="stop" data-stop="2"><b>3</b><span>木橋小溪</span></div>
+            <div class="stop" data-stop="3"><b>4</b><span>大樹洞</span></div>
+            <div class="stop" data-stop="4"><b>5</b><span>星光草地</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="finishScreen" class="screen finish-screen">
+      <div id="confetti" class="confetti" aria-hidden="true"></div>
+      <span class="finish-kicker">旅行完成！</span>
+      <div id="finishAnimal" class="finish-animal">🐰</div>
+      <h2>太棒了！</h2>
+      <p>你認出了 5 個注音符號，成功抵達星光草地！</p>
+      <div class="finish-stars">★ ★ ★ ★ ★</div>
+      <div class="finish-actions">
+        <button id="replayBtn" class="primary">再挑戰一次</button>
+        <button id="changeCharacterBtn" class="secondary">換角色</button>
+        <button id="finishHomeBtn" class="text-btn">回主選單</button>
+      </div>
+    </section>
+    <footer class="site-footer">© 傑尼爾教育文化事業集團 版權所有</footer>
+  </main>
+  <script src="app.js?v=animals-7"></script>
+</body>
+</html>
