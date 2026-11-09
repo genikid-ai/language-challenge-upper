@@ -38,6 +38,35 @@
       </div>
     </section>
 
+    <section id="settingsScreen" class="screen settings-screen">
+      <div class="settings-panel">
+        <p class="eyebrow">開始前先選擇</p>
+        <h2 id="settingsTitle">練習設定</h2>
+        <div class="setting-block">
+          <h3>要練習哪些結合韻？</h3>
+          <div class="toggle-row" id="groupChoices">
+            <button class="toggle-chip selected" data-group="ㄧ">ㄧ</button>
+            <button class="toggle-chip selected" data-group="ㄨ">ㄨ</button>
+            <button class="toggle-chip selected" data-group="ㄩ">ㄩ</button>
+          </div>
+        </div>
+        <div class="setting-block">
+          <h3>這次要玩幾題？</h3>
+          <div class="toggle-row" id="countChoices">
+            <button class="count-chip" data-count="5">5 題</button>
+            <button class="count-chip selected" data-count="10">10 題</button>
+            <button class="count-chip" data-count="20">20 題</button>
+            <button class="count-chip" data-count="all">全部</button>
+          </div>
+        </div>
+        <p id="poolSummary" class="pool-summary">已選擇 60 組題目</p>
+        <div class="settings-actions">
+          <button id="settingsBackBtn" class="secondary-btn">返回</button>
+          <button id="startGameBtn" class="primary-btn">開始遊戲 →</button>
+        </div>
+      </div>
+    </section>
+
     <section id="cardScreen" class="screen card-screen">
       <div class="instruction"><span>①</span> 看著卡片，大聲念一念</div>
       <div class="card-wrap"><img id="rhymeCard" alt="結合韻卡片" /></div>
