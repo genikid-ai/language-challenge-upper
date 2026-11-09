@@ -68,9 +68,8 @@ let mode='learn',round=0,current=null,deck=[],selectedGroups=new Set(['ㄧ','ㄨ
 function show(id){$$('.screen').forEach(x=>x.classList.remove('active'));$('#'+id).classList.add('active')}
 function closeModal(){$('#resultModal').classList.add('hidden')}
 function goHome(){closeModal();show('home');$('#homeBtn').classList.add('hidden');$('#progress').classList.add('hidden')}
-function openSettings(selected){mode=selected;$('#settingsTitle').textContent={learn:'學習模式設定',practice:'練習模式設定',challenge:'挑戰模式設定'}[mode];$('#homeBtn').classList.remove('hidden');$('#progress').classList.add('hidden');updatePoolSummary();show('settingsScreen')}
+function openSettings(selected){mode=selected;$('#settingsTitle').textContent={learn:'學習模式設定',practice:'練習模式設定',challenge:'挑戰模式設定'}[mode];$('#homeBtn').classList.remove('hidden');$('#progress').classList.add('hidden');show('settingsScreen')}
 function selectedPool(){return DATA.filter(x=>selectedGroups.has(x.group))}
-function updatePoolSummary(){const n=selectedPool().length;$('#poolSummary').textContent=`已選擇 ${n} 組題目（ㄧ ${selectedGroups.has('ㄧ')?'27':'0'}・ㄨ ${selectedGroups.has('ㄨ')?'23':'0'}・ㄩ ${selectedGroups.has('ㄩ')?'10':'0'}）`}
 function seenKey(){return `combined-rhyme-seen-${mode}`}
 function buildDeck(){const pool=selectedPool();let seen=[];try{seen=JSON.parse(localStorage.getItem(seenKey())||'[]')}catch{}const seenSet=new Set(seen);let unseen=pool.filter(x=>!seenSet.has(x.id));if(!unseen.length){unseen=[...pool];localStorage.removeItem(seenKey())}const ordered=[...shuffle(unseen),...shuffle(pool.filter(x=>seenSet.has(x.id)))];const wanted=questionCount==='all'?pool.length:Math.min(Number(questionCount),pool.length);return ordered.slice(0,wanted)}
 function start(){round=0;deck=buildDeck();$('#progress').classList.remove('hidden');preloadDeck();next()}
@@ -84,6 +83,6 @@ function reveal(button){if(button.dataset.revealed)return;button.dataset.reveale
 function openModal(correct){$('#modalIcon').textContent=correct?'🎉':'💪';$('#modalTitle').textContent=correct?'答對了！':'再想一想！';$('#modalMessage').textContent=correct?'你找到相同的結合韻了！':'看看旁邊的結合韻卡，再試一次。';$('#modalNextBtn').classList.toggle('hidden',!correct);$('#retryBtn').classList.toggle('hidden',correct);$('#resultModal').classList.remove('hidden')}
 function answer(button,item){if(mode==='learn'){reveal(button);return}if(item.id===current.id){$$('.choice').forEach(b=>b.disabled=true);reveal(button)}else{button.classList.add('wrong');openModal(false)}}
 $$('.mode-card').forEach(b=>b.onclick=()=>openSettings(b.dataset.mode));
-$$('.toggle-chip').forEach(b=>b.onclick=()=>{const g=b.dataset.group;if(selectedGroups.has(g)&&selectedGroups.size===1)return;selectedGroups.has(g)?selectedGroups.delete(g):selectedGroups.add(g);b.classList.toggle('selected',selectedGroups.has(g));updatePoolSummary()});
+$$('.toggle-chip').forEach(b=>b.onclick=()=>{const g=b.dataset.group;if(selectedGroups.has(g)&&selectedGroups.size===1)return;selectedGroups.has(g)?selectedGroups.delete(g):selectedGroups.add(g);b.classList.toggle('selected',selectedGroups.has(g))});
 $$('.count-chip').forEach(b=>b.onclick=()=>{$$('.count-chip').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');questionCount=b.dataset.count});
 $('#settingsBackBtn').onclick=goHome;$('#startGameBtn').onclick=start;$('#showPictures').onclick=displayChoices;$('#nextBtn').onclick=()=>{round++;next()};$('#modalNextBtn').onclick=()=>{round++;next()};$('#retryBtn').onclick=()=>{closeModal();$$('.choice').forEach(b=>b.classList.remove('wrong'))};$('#homeBtn').onclick=goHome;$('#finishHomeBtn').onclick=goHome;$('#againBtn').onclick=()=>{round=0;deck=buildDeck();preloadDeck();next()};
