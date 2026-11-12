@@ -5,7 +5,7 @@ const locations=['森林入口','蘑菇小徑','木橋小溪','大樹洞','星�
 const screens=[...document.querySelectorAll('.screen')];
 let state={range:'all',character:'rabbit',score:0,queue:[]};
 const $=id=>document.getElementById(id);
-function show(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));$('homeBtn').classList.toggle('hidden',id==='startScreen');}
+function show(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));$('homeBtn').classList.toggle('hidden',id==='startScreen');document.querySelector('.site-footer').classList.toggle('hidden',id!=='startScreen');}
 function shuffled(list){let a=[...list];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function prepare(){state.score=0;state.queue=shuffled(sets[state.range]).slice(0,5);$('traveler').textContent=animals[state.character];$('finishAnimal').textContent=animals[state.character];updateGame(false);show('gameScreen');}
 function updateGame(animate=true){const n=state.score;const spots=[['14%','27%'],['67%','36%'],['21%','51%'],['69%','67%'],['11%','83%']];$('progressText').textContent=`${n}／5`;$('locationTitle').textContent=locations[Math.min(n,4)];$('zhuyin').textContent=state.queue[n]||'';document.querySelectorAll('#stars i').forEach((s,i)=>s.classList.toggle('on',i<n));document.querySelectorAll('.stop').forEach((s,i)=>s.classList.toggle('done',i<=n));$('traveler').style.left=spots[Math.min(n,4)][0];$('traveler').style.top=spots[Math.min(n,4)][1];if(animate){$('zhuyin').classList.remove('change');void $('zhuyin').offsetWidth;$('zhuyin').classList.add('change');$('traveler').classList.add('cheer');setTimeout(()=>$('traveler').classList.remove('cheer'),600)}}
