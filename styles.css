@@ -36,3 +36,28 @@
 .game-footer .review{margin:0 0 0 auto}
 @media(max-width:980px){.game-top{grid-template-columns:1fr auto;padding:20px 24px 30px}.game-top .progress{grid-column:1/-1;justify-content:center}.game-panel .play-area{grid-template-columns:1fr}.game-panel .prompt{width:min(420px,100%);margin:auto}.game-panel .prompt img{min-height:270px}.game-panel .choice{min-height:140px}}
 @media(max-width:600px){.game-panel{padding:12px 11px 18px;border-radius:22px}.game-top{gap:9px;padding:14px 13px 25px;border-radius:19px}.game-top h1{font-size:1.4rem;padding:10px 12px;border-radius:17px}.game-top .seat-badge{font-size:.85rem;padding:8px 10px}.game-top .star{width:38px;height:38px;font-size:2rem}.game-meta{margin-top:20px;font-size:.8rem}.game-panel .prompt{width:min(300px,100%);padding:12px}.game-panel .prompt img{min-height:220px}.game-panel .choices{gap:7px}.game-panel .choice{min-height:88px;padding:5px;border-radius:15px}.game-panel .choice img{max-height:116px;border-radius:9px}.game-footer{flex-direction:column-reverse;align-items:stretch}.game-footer .review{margin:0;width:100%}.game-footer .back{align-self:flex-start}}
+
+/* 16:9 game canvas on landscape displays; compact controls keep it within one screen. */
+.app-shell:has(.game-panel){padding:12px}
+.fullscreen-toggle{position:fixed;top:14px;right:14px;z-index:100;width:46px;height:46px;display:grid;place-items:center;border:2px solid #bfd2c1;border-radius:14px;background:#fffdf7;color:var(--dark);box-shadow:0 5px 16px #465b4f24;cursor:pointer}
+.fullscreen-toggle:hover,.fullscreen-toggle:focus-visible{background:#e8f1e5;outline:3px solid #8bad96;outline-offset:2px}
+.fullscreen-toggle svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.fullscreen-toggle.is-active svg{transform:rotate(180deg)}
+.home-copyright{text-align:center;margin-top:20px;color:var(--muted);font-size:.85rem;font-weight:700}
+@media(min-width:760px) and (orientation:landscape){
+  .game-panel{width:min(calc(100vw - 24px),calc((100dvh - 24px)*16/9));aspect-ratio:16/9;max-height:calc(100dvh - 24px);display:flex;flex-direction:column;padding:clamp(10px,1.4vh,22px);overflow:hidden}
+  .game-top{flex:none;min-height:0;padding:clamp(9px,1.7vh,20px) 74px clamp(18px,2.5vh,32px)}
+  .game-top h1{font-size:clamp(1.35rem,2.5vw,2.8rem)}
+  .game-top .star{width:clamp(28px,3.5vw,54px);height:clamp(28px,3.5vw,54px);font-size:clamp(1.7rem,3vw,3rem)}
+  .game-meta{flex:none;margin-top:clamp(11px,2vh,22px);font-size:clamp(.85rem,1.2vw,1.1rem)}
+  .game-panel .instruction{flex:none;margin:clamp(5px,1vh,10px) 0 clamp(8px,1.4vh,18px)}
+  .game-panel .play-area{flex:1;min-height:0;grid-template-columns:minmax(0,1.02fr) minmax(0,1.75fr);gap:clamp(10px,2vw,30px)}
+  .game-panel .prompt{width:100%;min-width:0;min-height:0;padding:clamp(8px,1.2vh,18px)}
+  .game-panel .prompt img{min-height:0;max-height:100%;aspect-ratio:auto}
+  .game-panel .choices{min-height:0;grid-template-rows:repeat(2,minmax(0,1fr));gap:clamp(7px,1.4vh,16px)}
+  .game-panel .choice{min-height:0;padding:clamp(4px,.8vh,10px)}
+  .game-panel .choice img{max-height:100%;aspect-ratio:auto}
+  .game-footer{flex:none;min-height:0;margin-top:clamp(8px,1.5vh,18px)}
+}
+@media(min-width:760px) and (max-width:980px) and (orientation:landscape){.game-top{grid-template-columns:auto auto 1fr}.game-top .progress{grid-column:auto;justify-content:flex-end}.game-panel .prompt{max-width:none}.game-panel .play-area{grid-template-columns:minmax(0,1fr) minmax(0,1.65fr)}}
+@media(max-height:620px) and (orientation:landscape){.game-top{padding-top:6px;padding-bottom:17px}.game-top h1{padding:6px 12px}.game-meta{margin-top:8px}.game-panel .instruction{margin:4px 0 7px}.game-footer{margin-top:6px}.game-footer .back{padding:7px 16px}.fullscreen-toggle{width:40px;height:40px}}
